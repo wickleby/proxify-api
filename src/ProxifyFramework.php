@@ -4,6 +4,7 @@ use Config;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use Proxify\ProxifyFrameworkException;
 
 /**
  * Class ProxifyFramework
@@ -133,7 +134,7 @@ class ProxifyFramework
     private function apiRequest($urn, $method, $params = [])
     {
         $options = [
-            'auth' => [Config::get('services.proxify.user'), Config::get('services.proxify.pass')]
+            'auth' => [$this->getSetting('services.proxify.user'), $this->getSetting('services.proxify.pass')]
         ];
 
         if ($method == 'GET') {
@@ -143,10 +144,31 @@ class ProxifyFramework
         }
 
         $client = new Client(['headers' => ['Content-Type' => 'application/json']]);
-        $response = $client->request($method, Config::get('services.proxify.api_root') . DIRECTORY_SEPARATOR . $urn,
+        $response = $client->request(
+            $method, $this->getSetting('services.proxify.api_root') . DIRECTORY_SEPARATOR . $urn,
             $options);
 
 
         return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * Get config
+     *
+     * And validate there are existing
+     *
+     * @param $name string
+     * @return mixed
+     * @throws ProxifyFrameworkException
+     */
+    private function getSetting($name)
+    {
+        $config = Config::get($name);
+
+        if (empty($config)) {
+            throw new ProxifyFrameworkException("Required config ($name) is missing");
+        }
+
+        return $config;
     }
 }
