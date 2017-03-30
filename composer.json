@@ -1,0 +1,22 @@
+{
+  "name": "wickleby/proxify-framework",
+  "description": "The PHP-wrapper for communicating with the Proxify Framework",
+  "type": "library",
+  "require": {
+    "php": ">=7.0",
+    "guzzlehttp/guzzle": "6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Proxify\\ProxifyApi\\": "src/"
+    }
+  },
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Viktor Jarnheimer",
+      "email": "jarnheimer@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable"
+}
