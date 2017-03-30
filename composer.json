@@ -1,5 +1,5 @@
 {
-  "name": "wickleby/proxify-framework",
+  "name": "proxify/proxify-api",
   "description": "The PHP-wrapper for communicating with the Proxify Framework",
   "type": "library",
   "require": {
