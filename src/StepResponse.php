@@ -9,8 +9,6 @@ use Psr\Http\Message\ResponseInterface;
  * Class ProxifyFramework
  *
  * Handles the connection with the Proxify Framework
- *
- * @package App\Abcdivorce\Proxify
  */
 class StepResponse
 {

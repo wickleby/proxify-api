@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
  * Class ProxifyFramework
  *
  * Handles the connection with the Proxify Framework to generate steps etc.
- *
- * @package App\Abcdivorce\Proxify
  */
 class ProxifyFramework
 {
