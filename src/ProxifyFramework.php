@@ -4,7 +4,7 @@ use Config;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
-use Proxify\ProxifyFrameworkException;
+use Proxify\Exceptions\ProxifyFrameworkException;
 
 /**
  * Class ProxifyFramework
