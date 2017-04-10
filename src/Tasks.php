@@ -1,5 +1,7 @@
 <?php namespace Proxify\ProxifyApi;
 
+use Proxify\ProxifyApi\Exceptions\ProxifyFrameworkException;
+
 class Tasks
 {
 
@@ -34,6 +36,7 @@ class Tasks
      *
      * @param $taskName
      * @return bool|Task
+     * @throws ProxifyFrameworkException
      */
     public function get($taskName)
     {
@@ -43,7 +46,7 @@ class Tasks
             }
         }
 
-        return false;
+        throw new ProxifyFrameworkException('Could not find task with name ' . $taskName);
     }
 
 
