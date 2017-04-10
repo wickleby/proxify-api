@@ -36,6 +36,19 @@ class ProxifyFramework
         return TokenResponse::createFromApiResponse($response);
     }
 
+    /**
+     * Get all tasks and their current status for an order
+     *
+     * @param $orderId
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function getTasks($orderId)
+    {
+        $response = $this->getRequest('order/' . $orderId . '/tasks');
+
+        return Tasks::createFromApiResponse($response);
+    }
+
 
     /**
      * Get the step

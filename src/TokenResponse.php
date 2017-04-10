@@ -28,7 +28,7 @@ class TokenResponse
     public static function createFromApiResponse($response)
     {
         $tokenResponse = new self;
-        $tokenResponse->orderId = $response['order_id'];
+        $tokenResponse->task = $response['order_id'];
         $tokenResponse->serviceId = $response['service_id'];
         $tokenResponse->currentStep = $response['step_position'];
 
