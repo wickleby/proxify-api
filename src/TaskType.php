@@ -18,17 +18,6 @@ class TaskType
     public $label;
 
     /**
-     * @var string
-     */
-    public $icon;
-
-    /**
-     * @var string
-     */
-    public $color;
-
-
-    /**
      * Create from API
      *
      * @param $response
@@ -40,8 +29,6 @@ class TaskType
         $taskStatus->id = $response['id'];
         $taskStatus->name = $response['name'];
         $taskStatus->label = $response['label'];
-        $taskStatus->icon = $response['icon'];
-        $taskStatus->color = $response['color'];
 
         return $taskStatus;
     }
