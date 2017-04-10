@@ -27,9 +27,9 @@ class Task
     public $completed;
 
     /**
-     * @var string
+     * @var boolean
      */
-    public $passCondition;
+    public $passConditions;
 
     /**
      * @var boolean
@@ -89,7 +89,7 @@ class Task
         $task->type = TaskType::createFromApiResponse($response['type']);
         $task->status = TaskStatus::createFromApiResponse($response['status']);
         $task->completed = $response['completed'];
-        $task->passCondition = $response['pass_condition'];
+        $task->passConditions = $response['pass_conditions'];
         $task->visibleForClient = $response['visible_for_client'];
         $task->label = $response['label'];
         $task->labelNotCompleted = $response['label_not_completed'];
