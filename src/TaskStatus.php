@@ -23,10 +23,6 @@ class TaskStatus
      */
     public $label;
 
-    /**
-     * @var string
-     */
-    public $description;
 
     /**
      * Create from API
@@ -40,7 +36,6 @@ class TaskStatus
         $taskStatus->id = $response['id'];
         $taskStatus->name = $response['name'];
         $taskStatus->label = $response['label'];
-        $taskStatus->description = $response['description'];
 
         return $taskStatus;
     }
