@@ -2,6 +2,9 @@
 
 class Tasks
 {
+
+    public $tasks;
+
     /**
      * Create Tasks from API Response
      *
@@ -15,6 +18,16 @@ class Tasks
             $tasks[] = Task::createFromApiResponse($task);
         }
 
-        return $tasks;
+        $obj = new Tasks();
+        $obj->tasks = $tasks;
+
+        return $obj;
     }
+
+    public function all()
+    {
+        return $this->tasks;
+    }
+
+
 }
