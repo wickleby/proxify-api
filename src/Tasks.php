@@ -29,5 +29,22 @@ class Tasks
         return $this->tasks;
     }
 
+    /**
+     * Get task
+     *
+     * @param $taskName
+     * @return bool|Task
+     */
+    public function get($taskName)
+    {
+        foreach ($this->tasks as $task) {
+            if ($task->name == $taskName) {
+                return $task;
+            }
+        }
+
+        return false;
+    }
+
 
 }
