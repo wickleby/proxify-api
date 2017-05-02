@@ -1,6 +1,6 @@
 <?php namespace Proxify\ProxifyApi;
 
-use Config;
+use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exceptions\ServerException;
@@ -15,6 +15,20 @@ use Proxify\ProxifyApi\SeverException;
  */
 class ProxifyFramework
 {
+
+    protected $locale = 'es';
+
+    /**
+     * Set locale
+     *
+     * @param $locale string
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+
     /**
      * Get order
      *
@@ -64,6 +78,7 @@ class ProxifyFramework
             'step_position' => $stepPosition,
             'service_id' => $serviceId,
             'order_id' => $orderId,
+            'locale' => $this->locale,
         ];
 
         return new StepResponse($this->getRequest('step', $options));
@@ -84,6 +99,7 @@ class ProxifyFramework
             'step_position' => $stepPosition,
             'service_id' => $serviceId,
             'order_id' => $orderId,
+            'locale' => $this->locale,
         ];
 
         $options = array_merge($options, $request->all());
