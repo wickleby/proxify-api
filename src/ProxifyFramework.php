@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exceptions\ServerException;
+use GuzzleHttp\Exception\ServerException;
 use Illuminate\Http\Request;
 use Proxify\ProxifyApi\Exceptions\ProxifyFrameworkException;
 use Proxify\ProxifyApi\SeverException;
@@ -161,6 +161,8 @@ class ProxifyFramework
      * @param string $method
      * @param array $params Query parameters
      * @return array Json
+     * @throws ProxifyFrameworkException
+     * @throws \Proxify\ProxifyApi\SeverException
      */
     private function apiRequest($urn, $method, $params = [])
     {
