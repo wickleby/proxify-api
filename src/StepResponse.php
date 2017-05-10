@@ -29,9 +29,9 @@ class StepResponse
     public $title;
 
     /**
-     * @var string Tracking code
+     * @var array Data layer
      */
-    public $trackingCode;
+    public $dataLayer;
 
     /**
      * @var string Error message
@@ -78,7 +78,7 @@ class StepResponse
         $this->errorMessage = $response['error_message'] ?? null;
         $this->errorCode = $response['error_code'] ?? null;
         $this->redirectPosition = $response['step_position'] ?? null;
-        $this->trackingCode = $response['tracking_code'] ?? null;
+        $this->dataLayer = $response['data_layer'] ?? null;
         $this->title = $response['page_title'] ?? null;
     }
 
