@@ -18,6 +18,8 @@ class ProxifyFramework
 
     protected $locale = 'es';
 
+    protected $domain;
+
     /**
      * Set locale
      *
@@ -28,6 +30,15 @@ class ProxifyFramework
         $this->locale = $locale;
     }
 
+    /**
+     * Set the domain of the request
+     *
+     * @param $domain string eg. abcdivorcio.es
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+    }
 
     /**
      * Get order
@@ -78,7 +89,6 @@ class ProxifyFramework
             'step_position' => $stepPosition,
             'service_id' => $serviceId,
             'order_id' => $orderId,
-            'locale' => $this->locale,
         ];
 
         return new StepResponse($this->getRequest('step', $options));
@@ -99,7 +109,6 @@ class ProxifyFramework
             'step_position' => $stepPosition,
             'service_id' => $serviceId,
             'order_id' => $orderId,
-            'locale' => $this->locale,
         ];
 
         $options = array_merge($options, $request->all());
@@ -167,8 +176,13 @@ class ProxifyFramework
     private function apiRequest($urn, $method, $params = [])
     {
         $options = [
-            'auth' => [$this->getSetting('services.proxify.user'), $this->getSetting('services.proxify.pass')]
+            'auth' => [$this->getSetting('services.proxify.user'), $this->getSetting('services.proxify.pass')],
         ];
+
+        $params = array_merge($params, [
+            'locale' => $this->locale,
+            'domain' => $this->domain
+        ]);
 
         if ($method == 'GET') {
             $options['query'] = $params;
