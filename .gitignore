@@ -1,2 +1,9 @@
 /vendor/
-.idea
+.idea/*
+.idea/.name
+
+.idea/modules.xml
+
+.idea/.name
+
+.idea/.name
