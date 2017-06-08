@@ -3,10 +3,9 @@
 use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ServerException;
 use Illuminate\Http\Request;
 use Proxify\ProxifyApi\Exceptions\ProxifyFrameworkException;
-use Proxify\ProxifyApi\SeverException;
+use Proxify\ProxifyApi\Exceptions\ServerException;
 
 /**
  * Class ProxifyFramework
@@ -197,7 +196,7 @@ class ProxifyFramework
                 $method, $this->getSetting('services.proxify.api_root') . DIRECTORY_SEPARATOR . $urn,
                 $options);
         } catch (ServerException $e) {
-            throw new SeverException('Server error');
+            throw new ServerException('Server error');
         }
 
         return json_decode($response->getBody(), true);
