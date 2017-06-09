@@ -1,9 +1,11 @@
 <?php namespace Proxify\ProxifyApi;
 
+use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Config;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use Proxify\ProxifyApi\Exceptions\ProxifyConnectionException;
 use Proxify\ProxifyApi\Exceptions\ProxifyFrameworkException;
 use Proxify\ProxifyApi\Exceptions\ServerException;
 
@@ -170,7 +172,7 @@ class ProxifyFramework
      * @param array $params Query parameters
      * @return array Json
      * @throws ProxifyFrameworkException
-     * @throws \Proxify\ProxifyApi\SeverException
+     * @throws Exceptions\ServerException
      */
     private function apiRequest($urn, $method, $params = [])
     {
@@ -193,10 +195,13 @@ class ProxifyFramework
 
         try {
             $response = $client->request(
-                $method, $this->getSetting('services.proxify.api_root') . DIRECTORY_SEPARATOR . $urn,
-                $options);
-        } catch (ServerException $e) {
+                $method, $this->getSetting('services.proxify.api_root') . DIRECTORY_SEPARATOR . $urn, $options);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            throw new ServerException('Client error');
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
             throw new ServerException('Server error');
+        } catch (ConnectException $e) {
+            throw new ProxifyConnectionException('Connection error');
         }
 
         return json_decode($response->getBody(), true);
