@@ -26,9 +26,16 @@ class Tasks
         return $obj;
     }
 
+    /**
+     * Return all tasks which has passed the conditions
+     *
+     * @return Task[]
+     */
     public function all()
     {
-        return $this->tasks;
+        return array_filter($this->tasks, function($task){
+           return $task->passConditions;
+        });
     }
 
     /**
