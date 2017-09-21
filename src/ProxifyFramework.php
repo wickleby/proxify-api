@@ -97,6 +97,24 @@ class ProxifyFramework
 
 
     /**
+     * Get a person
+     *
+     * @param int $stepPosition Step position
+     * @param int $serviceId
+     * @param int|null $orderId
+     * @return StepResponse
+     */
+    public function getPerson(SwedishSecurityNumber $ssn)
+    {
+        $options = [
+            'ssn' => (string) $ssn,
+        ];
+
+        return Person::createFromApiResponse($this->getRequest('spar', $options));
+    }
+
+
+    /**
      * Send user input
      *
      * @param $stepPosition
@@ -147,7 +165,7 @@ class ProxifyFramework
      * @param array $params Query params
      * @return \Psr\Http\Message\ResponseInterface
      */
-    private function getRequest($urn, $params = [])
+    protected function getRequest($urn, $params = [])
     {
         return $this->apiRequest($urn, 'GET', $params);
     }
@@ -195,7 +213,7 @@ class ProxifyFramework
 
         try {
             $response = $client->request(
-                $method, $this->getSetting('services.proxify.api_root') . DIRECTORY_SEPARATOR . $urn, $options);
+                $method, $this->getSetting('services.proxify.api_root') . '/' . $urn, $options);
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             throw new ServerException('Client error');
         } catch (\GuzzleHttp\Exception\ServerException $e) {
