@@ -54,7 +54,7 @@ class Person extends ProxifyFramework
         $person->spokenName = $response['spokenName'];
         $person->lastName = $response['lastName'];
         $person->gender = $response['gender'];
-        $person->address = Address::createFromApiResponse($response['gender']);
+        $person->address = Address::createFromApiResponse($response['address']);
 
         return $person;
     }
