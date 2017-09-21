@@ -97,12 +97,10 @@ class ProxifyFramework
 
 
     /**
-     * Get a person
+     * Get a person based on SSN
      *
-     * @param int $stepPosition Step position
-     * @param int $serviceId
-     * @param int|null $orderId
-     * @return StepResponse
+     * @param SwedishSecurityNumber $ssn
+     * @return Person
      */
     public function getPerson(SwedishSecurityNumber $ssn)
     {
