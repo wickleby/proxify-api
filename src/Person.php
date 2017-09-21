@@ -4,7 +4,7 @@
  * Class Person
  * @package Proxify\ProxifyApi
  */
-class Person extends ProxifyFramework
+class Person
 {
     /**
      * @var SwedishSecurityNumber
