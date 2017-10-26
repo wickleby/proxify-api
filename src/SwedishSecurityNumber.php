@@ -1,6 +1,5 @@
 <?php namespace Proxify\ProxifyApi;
 
-use App\Exceptions\SwedishSocialSecurityNumberException;
 use Carbon\Carbon;
 use DateTime;
 use Exception;
