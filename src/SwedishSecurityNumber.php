@@ -8,7 +8,6 @@ use Exception;
  * Extracts data, manipulates and validates swedish security numbers
  *
  * @link https://en.wikipedia.org/wiki/Personal_identity_number_(Sweden)
- * @package App\Apply\Helpers
  */
 class SwedishSecurityNumber
 {
@@ -177,7 +176,6 @@ class SwedishSecurityNumber
     private static function testDate($year, $month, $day)
     {
         try {
-            date_default_timezone_set('Europe/Stockholm');
             $date = new DateTime($year . '-' . $month . '-' . $day);
             if (strlen($month) < 2) {
                 $month = '0' . $month;
