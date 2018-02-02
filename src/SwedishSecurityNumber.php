@@ -3,13 +3,14 @@
 use Carbon\Carbon;
 use DateTime;
 use Exception;
+use JsonSerializable;
 
 /**
  * Extracts data, manipulates and validates swedish security numbers
  *
  * @link https://en.wikipedia.org/wiki/Personal_identity_number_(Sweden)
  */
-class SwedishSecurityNumber
+class SwedishSecurityNumber implements JsonSerializable
 {
     /**
      * @var string In format YYYYMMDD-XXXX
@@ -43,6 +44,15 @@ class SwedishSecurityNumber
      */
     public function __toString() {
         return $this->securityNumber;
+    }
+
+    /**
+     * Get json representation.
+     *
+     * @return string
+     */
+    public function jsonSerialize() {
+        return $this->__toString();
     }
 
     /**
